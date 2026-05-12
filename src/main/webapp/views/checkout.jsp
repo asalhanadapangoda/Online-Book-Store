@@ -27,11 +27,22 @@
                                 <input class="form-check-input" type="radio" name="paymentMethod" value="CREDIT_CARD" id="payNow" checked>
                                 <label class="form-check-label" for="payNow">Credit Card / Pay Now</label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="paymentMethod" value="CASH_ON_DELIVERY" id="cod">
-                                <label class="form-check-label" for="cod">Cash on Delivery</label>
-                            </div>
+                            <c:choose>
+                                <c:when test="${hasEBook}">
+                                    <div class="alert alert-info py-2 small">
+                                        <i class="bi bi-info-circle me-2"></i>
+                                        E-Books require online payment. Cash on Delivery is disabled.
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" value="CASH_ON_DELIVERY" id="cod">
+                                        <label class="form-check-label" for="cod">Cash on Delivery</label>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
+
 
                         <button type="submit" class="btn btn-primary btn-lg w-100 py-3 mt-3">Place Order</button>
                     </form>

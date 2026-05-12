@@ -39,10 +39,45 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label class="form-label">Book Type</label>
+                                <select name="bookType" id="bookType" class="form-select" onchange="toggleFields()">
+                                    <option value="PRINTED">Printed Book</option>
+                                    <option value="EBOOK">E-Book</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div id="ebookFields" style="display:none;" class="mb-3">
+                            <label class="form-label">Book Link (Download URL)</label>
+                            <input type="text" name="bookLink" class="form-control">
+                        </div>
+
+                        
+                        <div id="printedFields" class="mb-3">
+                            <label class="form-label">Weight (kg)</label>
+                            <input type="number" step="0.1" name="weight" class="form-control">
+                        </div>
+
                         <div class="mb-4">
                             <label class="form-label">Description</label>
                             <textarea name="description" class="form-control" rows="4" required></textarea>
                         </div>
+                        
+                        <script>
+                            function toggleFields() {
+                                var type = document.getElementById("bookType").value;
+                                if (type === "EBOOK") {
+                                    document.getElementById("ebookFields").style.display = "block";
+                                    document.getElementById("printedFields").style.display = "none";
+                                } else {
+                                    document.getElementById("ebookFields").style.display = "none";
+                                    document.getElementById("printedFields").style.display = "block";
+                                }
+                            }
+                        </script>
+
                         <button type="submit" class="btn btn-primary w-100">Add Book to Catalog</button>
                     </form>
                 </div>

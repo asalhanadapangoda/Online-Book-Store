@@ -43,10 +43,45 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label class="form-label">Book Type</label>
+                                <select name="bookType" id="bookType" class="form-select" onchange="toggleFields()">
+                                    <option value="PRINTED" ${book.bookType == 'PRINTED' ? 'selected' : ''}>Printed Book</option>
+                                    <option value="EBOOK" ${book.bookType == 'EBOOK' ? 'selected' : ''}>E-Book</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="ebookFields" style="display: ${book.bookType == 'EBOOK' ? 'block' : 'none'};" class="mb-3">
+                            <label class="form-label">Book Link (Download URL)</label>
+                            <input type="text" name="bookLink" value="${bookLink}" class="form-control">
+                        </div>
+
+                        
+                        <div id="printedFields" style="display: ${book.bookType == 'PRINTED' ? 'block' : 'none'};" class="mb-3">
+                            <label class="form-label">Weight (kg)</label>
+                            <input type="number" step="0.1" name="weight" value="${weight}" class="form-control">
+                        </div>
+
                         <div class="mb-4">
                             <label class="form-label">Description</label>
                             <textarea name="description" class="form-control" rows="4" required>${book.description}</textarea>
                         </div>
+                        
+                        <script>
+                            function toggleFields() {
+                                var type = document.getElementById("bookType").value;
+                                if (type === "EBOOK") {
+                                    document.getElementById("ebookFields").style.display = "block";
+                                    document.getElementById("printedFields").style.display = "none";
+                                } else {
+                                    document.getElementById("ebookFields").style.display = "none";
+                                    document.getElementById("printedFields").style.display = "block";
+                                }
+                            }
+                        </script>
+
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary flex-grow-1">Update Book Information</button>
                             <a href="/admin/manage-books" class="btn btn-outline-secondary">Cancel</a>

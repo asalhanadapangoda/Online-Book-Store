@@ -19,7 +19,13 @@
                     <div class="card glass-card h-100 border-0 overflow-hidden text-center">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title fw-bold">${book.title}</h5>
-                            <p class="text-muted small">${book.author}</p>
+                            <p class="text-muted small mb-1">${book.author}</p>
+                            <div class="mb-3">
+                                <span class="badge ${book.bookType == 'EBOOK' ? 'bg-info' : 'bg-secondary'}">
+                                    ${book.bookType == 'EBOOK' ? 'E-Book' : 'Printed Book'}
+                                </span>
+                            </div>
+
                             <div class="mt-auto">
                                 <p class="text-primary fw-bold mb-3">$${book.price}</p>
                                 <div class="d-grid gap-2">
