@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class ProfileController {
@@ -25,17 +27,25 @@ public class ProfileController {
     }
 
     @PostMapping("/profile/update")
-    public String updateProfile(User updatedUser, HttpSession session) {
+    public String updateProfile(@RequestParam("fullName") String fullName,
+                               @RequestParam("address") String address,
+                               @RequestParam("phoneNumber") String phoneNumber,
+                               @RequestParam("email") String email,
+                               HttpSession session) {
         User currentUser = SessionUtil.getUser(session);
         if (currentUser == null) return "redirect:/login";
         
-        currentUser.setFullName(updatedUser.getFullName());
-        currentUser.setAddress(updatedUser.getAddress());
-        currentUser.setPhoneNumber(updatedUser.getPhoneNumber());
-        currentUser.setEmail(updatedUser.getEmail());
+        currentUser.setEmail(email);
+        if (currentUser instanceof com.bookstore.model.Customer) {
+            com.bookstore.model.Customer customer = (com.bookstore.model.Customer) currentUser;
+            customer.setFullName(fullName);
+            customer.setAddress(address);
+            customer.setPhoneNumber(phoneNumber);
+        }
         
         userService.saveUser(currentUser);
         SessionUtil.setUser(session, currentUser);
         return "redirect:/profile?success";
     }
+
 }

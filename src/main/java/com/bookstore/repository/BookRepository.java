@@ -24,8 +24,22 @@ public class BookRepository {
         List<Book> books = new ArrayList<>();
         for (String line : lines) {
             String[] parts = line.split("\\|");
-            if (parts.length >= 6) {
-                books.add(new Book(parts[0], parts[1], parts[2], parts[3], Double.parseDouble(parts[4]), parts[5]));
+            if (parts.length >= 7) {
+                String id = parts[0];
+                String title = parts[1];
+                String author = parts[2];
+                String description = parts[3];
+                double price = Double.parseDouble(parts[4]);
+                String category = parts[5];
+                String type = parts[6];
+                
+                if ("EBOOK".equals(type) && parts.length >= 8) {
+                    books.add(new com.bookstore.model.EBook(id, title, author, description, price, category, parts[7]));
+                } else if ("PRINTED".equals(type) && parts.length >= 8) {
+                    books.add(new com.bookstore.model.PrintedBook(id, title, author, description, price, category, Double.parseDouble(parts[7])));
+                } else {
+                    books.add(new Book(id, title, author, description, price, category, type));
+                }
             }
         }
         return books;
@@ -49,8 +63,16 @@ public class BookRepository {
 
         List<String> lines = new ArrayList<>();
         for (Book b : books) {
+            String extra = "";
+            if (b instanceof com.bookstore.model.EBook) {
+                extra = ((com.bookstore.model.EBook) b).getBookLink();
+            } else if (b instanceof com.bookstore.model.PrintedBook) {
+
+                extra = String.valueOf(((com.bookstore.model.PrintedBook) b).getWeight());
+            }
+            
             lines.add(String.join("|", b.getId(), b.getTitle(), b.getAuthor(), b.getDescription(),
-                    String.valueOf(b.getPrice()), b.getCategory(), b.getImageUrl()));
+                    String.valueOf(b.getPrice()), b.getCategory(), b.getBookType(), extra));
         }
         FileUtil.writeFile(getFilePath(), lines);
     }
@@ -60,9 +82,17 @@ public class BookRepository {
         books.removeIf(b -> b.getId().equals(id));
         List<String> lines = new ArrayList<>();
         for (Book b : books) {
+             String extra = "";
+            if (b instanceof com.bookstore.model.EBook) {
+                extra = ((com.bookstore.model.EBook) b).getBookLink();
+            } else if (b instanceof com.bookstore.model.PrintedBook) {
+
+                extra = String.valueOf(((com.bookstore.model.PrintedBook) b).getWeight());
+            }
             lines.add(String.join("|", b.getId(), b.getTitle(), b.getAuthor(), b.getDescription(),
-                    String.valueOf(b.getPrice()), b.getCategory(), b.getImageUrl()));
+                    String.valueOf(b.getPrice()), b.getCategory(), b.getBookType(), extra));
         }
         FileUtil.writeFile(getFilePath(), lines);
     }
+
 }

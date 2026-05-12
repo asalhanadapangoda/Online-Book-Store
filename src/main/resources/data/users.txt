@@ -1,0 +1,2 @@
+1|admin|admin@bookstore.com|admin123|ADMIN|||
+2|user|user@gmail.com|user123|CUSTOMER|John Doe|123 Street, City|1234567890

@@ -39,9 +39,12 @@ public class OrderController {
     public String checkoutPage(HttpSession session, Model model) {
         User user = SessionUtil.getUser(session);
         if (user == null) return "redirect:/login";
+        
         model.addAttribute("user", user);
         return "checkout";
     }
+
+
 
     @PostMapping("/checkout")
     public String processCheckout(@RequestParam("shippingAddress") String shippingAddress, @RequestParam("paymentMethod") String paymentMethod, HttpSession session, Model model) {

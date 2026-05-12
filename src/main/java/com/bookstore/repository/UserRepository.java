@@ -24,8 +24,20 @@ public class UserRepository {
         List<User> users = new ArrayList<>();
         for (String line : lines) {
             String[] parts = line.split("\\|");
-            if (parts.length >= 8) {
-                users.add(new User(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7]));
+            if (parts.length >= 5) {
+                String id = parts[0];
+                String username = parts[1];
+                String email = parts[2];
+                String password = parts[3];
+                String role = parts[4];
+                
+                if ("CUSTOMER".equalsIgnoreCase(role) && parts.length >= 8) {
+                    users.add(new com.bookstore.model.Customer(id, username, email, password, parts[5], parts[6], parts[7]));
+                } else if ("ADMIN".equalsIgnoreCase(role)) {
+                    users.add(new com.bookstore.model.Admin(id, username, email, password));
+                } else {
+                    users.add(new User(id, username, email, password, role));
+                }
             }
         }
         return users;
@@ -49,7 +61,18 @@ public class UserRepository {
         
         List<String> lines = new ArrayList<>();
         for (User u : users) {
-            lines.add(String.join("|", u.getId(), u.getUsername(), u.getEmail(), u.getPassword(), u.getRole(), u.getFullName(), u.getAddress(), u.getPhoneNumber()));
+            String fullName = "";
+            String address = "";
+            String phoneNumber = "";
+            
+            if (u instanceof com.bookstore.model.Customer) {
+                com.bookstore.model.Customer c = (com.bookstore.model.Customer) u;
+                fullName = c.getFullName();
+                address = c.getAddress();
+                phoneNumber = c.getPhoneNumber();
+            }
+            
+            lines.add(String.join("|", u.getId(), u.getUsername(), u.getEmail(), u.getPassword(), u.getRole(), fullName, address, phoneNumber));
         }
         FileUtil.writeFile(getFilePath(), lines);
     }
@@ -59,8 +82,19 @@ public class UserRepository {
         users.removeIf(u -> u.getId().equals(id));
         List<String> lines = new ArrayList<>();
         for (User u : users) {
-            lines.add(String.join("|", u.getId(), u.getUsername(), u.getEmail(), u.getPassword(), u.getRole(), u.getFullName(), u.getAddress(), u.getPhoneNumber()));
+            String fullName = "";
+            String address = "";
+            String phoneNumber = "";
+            
+            if (u instanceof com.bookstore.model.Customer) {
+                com.bookstore.model.Customer c = (com.bookstore.model.Customer) u;
+                fullName = c.getFullName();
+                address = c.getAddress();
+                phoneNumber = c.getPhoneNumber();
+            }
+            lines.add(String.join("|", u.getId(), u.getUsername(), u.getEmail(), u.getPassword(), u.getRole(), fullName, address, phoneNumber));
         }
         FileUtil.writeFile(getFilePath(), lines);
     }
+
 }

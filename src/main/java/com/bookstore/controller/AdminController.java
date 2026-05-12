@@ -48,8 +48,25 @@ public class AdminController {
     }
 
     @PostMapping("/add-book")
-    public String addBook(Book book, HttpSession session) {
+    public String addBook(@RequestParam("title") String title,
+                         @RequestParam("author") String author,
+                         @RequestParam("description") String description,
+                         @RequestParam("price") double price,
+                         @RequestParam("category") String category,
+                         @RequestParam("bookType") String bookType,
+                         @RequestParam(value = "bookLink", required = false) String bookLink,
+                         @RequestParam(value = "weight", required = false) Double weight,
+                         HttpSession session) {
         if (!SessionUtil.isAdmin(session)) return "redirect:/login";
+        
+        Book book;
+        if ("EBOOK".equals(bookType)) {
+            book = new com.bookstore.model.EBook(null, title, author, description, price, category, bookLink);
+        } else {
+            book = new com.bookstore.model.PrintedBook(null, title, author, description, price, category, weight != null ? weight : 0.0);
+        }
+
+        
         bookService.saveBook(book);
         return "redirect:/admin/manage-books";
     }
@@ -64,16 +81,41 @@ public class AdminController {
     @GetMapping("/edit-book/{id}")
     public String editBookPage(@PathVariable("id") String id, HttpSession session, Model model) {
         if (!SessionUtil.isAdmin(session)) return "redirect:/login";
-        model.addAttribute("book", bookService.getBookById(id));
+        Book book = bookService.getBookById(id);
+        model.addAttribute("book", book);
+        if (book instanceof com.bookstore.model.EBook) {
+            model.addAttribute("bookLink", ((com.bookstore.model.EBook) book).getBookLink());
+        } else if (book instanceof com.bookstore.model.PrintedBook) {
+            model.addAttribute("weight", ((com.bookstore.model.PrintedBook) book).getWeight());
+        }
         return "admin/edit-book";
     }
 
     @PostMapping("/edit-book")
-    public String editBook(com.bookstore.model.Book book, HttpSession session) {
+    public String editBook(@RequestParam("id") String id,
+                          @RequestParam("title") String title,
+                          @RequestParam("author") String author,
+                          @RequestParam("description") String description,
+                          @RequestParam("price") double price,
+                          @RequestParam("category") String category,
+                          @RequestParam("bookType") String bookType,
+                          @RequestParam(value = "bookLink", required = false) String bookLink,
+                          @RequestParam(value = "weight", required = false) Double weight,
+                          HttpSession session) {
         if (!SessionUtil.isAdmin(session)) return "redirect:/login";
-        bookService.saveBook(book); // Simple saveBook handles update because it uses the existing ID
+        
+        Book book;
+        if ("EBOOK".equals(bookType)) {
+            book = new com.bookstore.model.EBook(id, title, author, description, price, category, bookLink);
+        } else {
+            book = new com.bookstore.model.PrintedBook(id, title, author, description, price, category, weight != null ? weight : 0.0);
+        }
+        
+        bookService.saveBook(book);
         return "redirect:/admin/manage-books";
     }
+
+
 
     @GetMapping("/manage-users")
     public String manageUsers(HttpSession session, Model model) {
@@ -107,12 +149,17 @@ public class AdminController {
     }
 
     @PostMapping("/add-admin")
-    public String addAdmin(com.bookstore.model.User user, HttpSession session) {
+    public String addAdmin(@RequestParam("username") String username,
+                          @RequestParam("email") String email,
+                          @RequestParam("password") String password,
+                          HttpSession session) {
         if (!SessionUtil.isAdmin(session)) return "redirect:/login";
-        user.setRole("ADMIN");
-        userService.saveUser(user);
+        
+        com.bookstore.model.Admin admin = new com.bookstore.model.Admin(null, username, email, password);
+        userService.saveUser(admin);
         return "redirect:/admin/manage-admins";
     }
+
 
     @GetMapping("/delete-user/{id}")
     public String deleteUser(@PathVariable("id") String id, HttpSession session) {

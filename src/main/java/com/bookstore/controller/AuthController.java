@@ -42,14 +42,23 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(User user, Model model) {
-        if (userService.getUserByEmail(user.getEmail()) != null) {
+    public String register(@RequestParam("username") String username,
+                          @RequestParam("email") String email,
+                          @RequestParam("password") String password,
+                          @RequestParam("fullName") String fullName,
+                          @RequestParam("address") String address,
+                          @RequestParam("phoneNumber") String phoneNumber,
+                          Model model) {
+        if (userService.getUserByEmail(email) != null) {
             model.addAttribute("error", "Email already exists");
             return "register";
         }
-        userService.registerUser(user);
+        
+        com.bookstore.model.Customer customer = new com.bookstore.model.Customer(null, username, email, password, fullName, address, phoneNumber);
+        userService.saveUser(customer);
         return "redirect:/login";
     }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

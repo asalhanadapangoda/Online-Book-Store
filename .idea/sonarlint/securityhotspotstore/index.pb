@@ -23,3 +23,5 @@ W
 0src/main/webapp/WEB-INF/views/admin/add-book.jsp,e\0\e06f087adc630f7edb5636503f82db7f6f1d871e
 d
 4src/main/webapp/WEB-INF/views/admin/manage-books.jsp,d\0\d037f7a1de3a718f04748ae310545c1ff87e3101
+G
+src/main/data/books.txt,5\e\5ec4d9f10a66c2a26a54eaecd4e4c2d63c05407c
