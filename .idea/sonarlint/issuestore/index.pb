@@ -1,6 +1,4 @@
 
-S
-#src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 e
@@ -11,3 +9,17 @@ d
 4src/main/java/com/bookstore/service/BookService.java,0\8\08a3a0d44d09fea72d33b350ec9dbe8c952cf4e1
 k
 ;src/main/java/com/bookstore/controller/AdminController.java,d\3\d343772ba484e58cbb4a64e82409d2000b450747
+j
+:src/main/java/com/bookstore/controller/BookController.java,0\e\0edc0996c8dc1a46273ed8784292a17b043ebc8a
+j
+:src/main/java/com/bookstore/controller/HomeController.java,3\7\371aa0a65f01904b26ec20c6b2381b5cab28085c
+j
+:src/main/java/com/bookstore/repository/BookRepository.java,a\5\a5d473d59715473430241d715cdfcac650c78ca0
+^
+.src/main/webapp/WEB-INF/views/book-details.jsp,3\b\3b6639d49c5e2aef1d115739e93b0ae99a2883c7
+W
+'src/main/webapp/WEB-INF/views/books.jsp,1\8\187b3cac13f483ac27fd1805bb311fd0a0493f8a
+`
+0src/main/webapp/WEB-INF/views/admin/add-book.jsp,e\0\e06f087adc630f7edb5636503f82db7f6f1d871e
+d
+4src/main/webapp/WEB-INF/views/admin/manage-books.jsp,d\0\d037f7a1de3a718f04748ae310545c1ff87e3101

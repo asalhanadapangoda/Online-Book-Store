@@ -17,10 +17,14 @@ public class BookService {
     @PostConstruct
     public void init() {
         if (bookRepository.findAll().isEmpty()) {
-            bookRepository.save(new Book("1", "The Great Gatsby", "F. Scott Fitzgerald", "A story of wealth and love.", 15.99, "Classic", "gatsby.jpg"));
-            bookRepository.save(new Book("2", "1984", "George Orwell", "A dystopian social science fiction novel.", 12.50, "Dystopian", "1984.jpg"));
-            bookRepository.save(new Book("3", "The Hobbit", "J.R.R. Tolkien", "A fantasy novel and children's book.", 20.00, "Fantasy", "hobbit.jpg"));
-            bookRepository.save(new Book("4", "To Kill a Mockingbird", "Harper Lee", "A novel about racial injustice.", 18.25, "Classic", "mockingbird.jpg"));
+            bookRepository.save(new Book("1", "The Great Gatsby", "F. Scott Fitzgerald", "A story of wealth and love.",
+                    15.99, "Classic"));
+            bookRepository.save(new Book("2", "1984", "George Orwell", "A dystopian social science fiction novel.",
+                    12.50, "Dystopian"));
+            bookRepository.save(new Book("3", "The Hobbit", "J.R.R. Tolkien", "A fantasy novel and children's book.",
+                    20.00, "Fantasy"));
+            bookRepository.save(new Book("4", "To Kill a Mockingbird", "Harper Lee", "A novel about racial injustice.",
+                    18.25, "Classic"));
         }
     }
 

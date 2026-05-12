@@ -1,0 +1,50 @@
+.navbar {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 65px !important; /* Increased height to 65px for a more classic feel */
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.navbar .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: 65px;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--primary-color) !important;
+    margin-right: 2rem;
+    padding: 0 !important;
+    line-height: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 65px;
+    height: 65px;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.btn-primary.ms-lg-2 {
+    padding: 0.5rem 1.5rem !important;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 0;
+}

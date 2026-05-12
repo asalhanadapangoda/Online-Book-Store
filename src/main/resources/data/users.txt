@@ -1,0 +1,4 @@
+1|admin|admin@bookstore.com|admin123|ADMIN|System Admin|Main Office|0000000000
+2|user|user@gmail.com|user123|CUSTOMER|John Doe|123 Street, City|1234567890
+3735ae45-25d5-4211-8973-f11eb2aac6a1|user|asalhimsanda@gmail.com|12345678|CUSTOMER|Asal Handapangoda|Horana|0781014191
+dd4a6853-7611-4941-bb5b-7b076bb1a189|admin2|asalhimsanda@outlook.com|12345678|ADMIN|null|null|null
