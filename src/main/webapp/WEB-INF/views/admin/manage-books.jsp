@@ -22,6 +22,7 @@
                     <tr>
                         <th class="ps-4">Title</th>
                         <th>Author</th>
+                        <th>Type</th>
                         <th>Category</th>
                         <th>Price</th>
                         <th class="text-end pe-4">Actions</th>
@@ -32,6 +33,16 @@
                         <tr>
                             <td class="ps-4 fw-bold">${book.title}</td>
                             <td>${book.author}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${book.bookType == 'EBOOK'}">
+                                        <span class="badge bg-info text-dark">E-BOOK</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="badge bg-warning text-dark">PRINTED</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                             <td><span class="badge bg-secondary">${book.category}</span></td>
                             <td class="text-primary fw-bold">$${book.price}</td>
                             <td class="text-end pe-4">

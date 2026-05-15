@@ -9,7 +9,6 @@ import com.bookstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.annotation.PostConstruct;
 import java.util.List;
 
 @Service
@@ -18,16 +17,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @PostConstruct
-    public void init() {
-        if (userRepository.findAll().isEmpty()) {
-            Admin admin = new Admin("1", "admin", "admin@bookstore.com", "admin123");
-            userRepository.save(admin);
-            
-            Customer customer = new Customer("2", "user", "user@gmail.com", "user123", "John Doe", "123 Street, City", "1234567890");
-            userRepository.save(customer);
-        }
-    }
+
 
 
     @Override
