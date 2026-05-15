@@ -15,5 +15,6 @@ public class Book {
     private double price;
     private String category;
     private String bookType; // EBOOK, PRINTED
+    
 
 }

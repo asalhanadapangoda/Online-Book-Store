@@ -2,4 +2,3 @@
 3|The Hobbit|J.R.R. Tolkien|A fantasy novel and children's book.|20.0|Fantasy|hobbit.jpg|
 4|To Kill a Mockingbird|Harper Lee|A novel about racial injustice.|18.25|Classic|mockingbird.jpg|
 1|The Great Gatsby|Scott Fitzgerald|A story of wealth and love.|15.99|Classic|null|
-f814e7d2-76bf-4b87-82ee-3aa70f576f2f|jhvkhca|aich|dd|33.0|Classic|EBOOK|eee

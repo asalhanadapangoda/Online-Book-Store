@@ -26,9 +26,9 @@ public class BookServiceImpl implements BookService {
                     20.00, "Fantasy", 0.8));
             bookRepository.save(new com.bookstore.model.EBook("4", "To Kill a Mockingbird", "Harper Lee", "A novel about racial injustice.",
                     18.25, "Classic", "https://example.com/mockingbird.pdf"));
-
         }
     }
+
 
 
     @Override
