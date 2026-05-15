@@ -1,8 +1,6 @@
 package com.bookstore.service.impl;
 
 import com.bookstore.model.User;
-import com.bookstore.model.Admin;
-import com.bookstore.model.Customer;
 import com.bookstore.repository.UserRepository;
 
 import com.bookstore.service.UserService;

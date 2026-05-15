@@ -5,7 +5,6 @@ import com.bookstore.service.BookService;
 import com.bookstore.service.OrderService;
 import com.bookstore.service.ReviewService;
 import com.bookstore.service.UserService;
-import com.bookstore.service.PaymentService;
 import com.bookstore.util.SessionUtil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ public class AdminController {
     @Autowired private UserService userService;
     @Autowired private OrderService orderService;
     @Autowired private ReviewService reviewService;
-    @Autowired private PaymentService paymentService;
 
     @GetMapping("/dashboard")
     public String dashboard(HttpSession session, Model model) {
