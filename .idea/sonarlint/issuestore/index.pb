@@ -18,14 +18,6 @@ j
 G
 src/main/data/books.txt,5\e\5ec4d9f10a66c2a26a54eaecd4e4c2d63c05407c
 \
-,src/main/webapp/views/admin/manage-books.jsp,5\0\507cbf992c85109855f73c71114aef090be25fbf
-X
-(src/main/webapp/views/admin/add-book.jsp,a\3\a380a31d9be75a36f406dfc3884cc20f863302ee
-O
-src/main/webapp/views/books.jsp,3\8\38be3b78b5e95f657e2be624e612f09acd1618c3
-V
-&src/main/webapp/views/book-details.jsp,2\2\225bbe06359b9c84e8a0956e47c12577d19bc8fd
-\
 ,src/main/java/com/bookstore/model/EBook.java,6\e\6eb4cd01cb59ffee2f50663d5c9915ee10515ad2
 b
 2src/main/java/com/bookstore/model/PrintedBook.java,e\6\e69cc84bcb1b5a82c0f71c5f99df6bb2a86512ed
