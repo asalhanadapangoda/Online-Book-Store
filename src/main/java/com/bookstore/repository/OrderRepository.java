@@ -41,6 +41,15 @@ public class OrderRepository {
         return orders;
     }
 
+    public Order findById(String id) {
+        for (Order order : findAll()) {
+            if (order.getId().equals(id)) {
+                return order;
+            }
+        }
+        return null;
+    }
+
     public void save(Order order) {
         if (order.getId() == null || order.getId().isEmpty()) {
             order.setId(UUID.randomUUID().toString());

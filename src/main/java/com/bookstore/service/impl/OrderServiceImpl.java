@@ -34,13 +34,19 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void updateOrderStatus(String orderId, String status) {
-        List<Order> orders = orderRepository.findAll();
-        for (Order o : orders) {
-            if (o.getId().equals(orderId)) {
-                o.setStatus(status);
-                orderRepository.save(o);
-                break;
-            }
+        Order order = findById(orderId);
+        if (order != null) {
+            order.setStatus(status);
+            orderRepository.save(order);
         }
+    }
+
+    @Override
+    public Order getOrderById(String orderId) {
+        return orderRepository.findById(orderId);
+    }
+
+    private Order findById(String orderId) {
+        return orderRepository.findById(orderId);
     }
 }

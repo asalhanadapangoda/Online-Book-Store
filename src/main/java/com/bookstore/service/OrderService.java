@@ -8,4 +8,5 @@ public interface OrderService {
     List<Order> getOrdersByUserId(String userId);
     void placeOrder(Order order);
     void updateOrderStatus(String orderId, String status);
+    Order getOrderById(String orderId);
 }

@@ -2,12 +2,10 @@ package com.bookstore.controller;
 
 import com.bookstore.model.Cart;
 import com.bookstore.model.Order;
-import com.bookstore.model.Payment;
 import com.bookstore.model.User;
 import com.bookstore.service.BookService;
 import com.bookstore.service.CartService;
 import com.bookstore.service.OrderService;
-import com.bookstore.service.PaymentService;
 import com.bookstore.util.SessionUtil;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +30,6 @@ public class OrderController {
     private CartService cartService;
     @Autowired
     private BookService bookService;
-    @Autowired
-    private PaymentService paymentService;
 
     @GetMapping("/checkout")
     public String checkoutPage(HttpSession session, Model model) {
@@ -75,15 +71,8 @@ public class OrderController {
         }
         
         orderService.placeOrder(order);
-        
-        if ("CREDIT_CARD".equals(paymentMethod)) {
-            Payment payment = new Payment(null, order.getId(), total, paymentMethod, "COMPLETED", order.getOrderDate());
-            paymentService.processPayment(payment);
-        }
-
         cartService.clearCart(user.getId());
-        model.addAttribute("order", order);
-        return "payment"; // This page will say "Thank you" and show order info
+        return "redirect:/payment/process?orderId=" + order.getId();
     }
 
     @GetMapping("/my-orders")
