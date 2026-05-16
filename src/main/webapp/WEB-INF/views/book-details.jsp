@@ -11,6 +11,7 @@
 
         <body>
             <jsp:include page="navbar.jsp" />
+            
 
             <div class="container">
                 <div class="row mb-5 justify-content-center">
